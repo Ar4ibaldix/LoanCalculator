@@ -106,11 +106,47 @@ namespace LoanPaymentCalculator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Monthly Payment.
+        /// </summary>
+        internal static string InvalidMonthlyPayment {
+            get {
+                return ResourceManager.GetString("InvalidMonthlyPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to InvalidTerm.
         /// </summary>
         internal static string InvalidTerm {
             get {
                 return ResourceManager.GetString("InvalidTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Total Interest.
+        /// </summary>
+        internal static string InvalidTotalInterest {
+            get {
+                return ResourceManager.GetString("InvalidTotalInterest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Total Payment.
+        /// </summary>
+        internal static string InvalidTotalPayment {
+            get {
+                return ResourceManager.GetString("InvalidTotalPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LoanInfo Model Not Found.
+        /// </summary>
+        internal static string LoanInfoModelNotFound {
+            get {
+                return ResourceManager.GetString("LoanInfoModelNotFound", resourceCulture);
             }
         }
         

@@ -132,8 +132,20 @@
   <data name="InvalidInterest" xml:space="preserve">
     <value>InvalidInterest</value>
   </data>
+  <data name="InvalidMonthlyPayment" xml:space="preserve">
+    <value>Invalid Monthly Payment</value>
+  </data>
   <data name="InvalidTerm" xml:space="preserve">
     <value>InvalidTerm</value>
+  </data>
+  <data name="InvalidTotalInterest" xml:space="preserve">
+    <value>Invalid Total Interest</value>
+  </data>
+  <data name="InvalidTotalPayment" xml:space="preserve">
+    <value>Invalid Total Payment</value>
+  </data>
+  <data name="LoanInfoModelNotFound" xml:space="preserve">
+    <value>LoanInfo Model Not Found</value>
   </data>
   <data name="MustBepositive" xml:space="preserve">
     <value>The number must be positive</value>

@@ -2,6 +2,7 @@
 using BusinessLayerCore.Managers;
 using BusinessLayerInterfaces.Exceptions;
 using BusinessLayerInterfaces.Managers;
+using BusinessLayerInterfaces.Models;
 using Moq;
 using NUnit.Framework;
 
@@ -59,6 +60,14 @@ namespace LoanPaymentCalculatorTests.Managers
         {
             var manager = new LoanManager();
             Assert.Throws<InvalidTermException>(() => manager.CreateLoan(10, 5, 5, term));
+        }
+
+        [Test]
+        [TestCase(null)]
+        public void CalculateLoanStatisticsMethodThrowExceptionIfNotparamIsNull(ILoanInfoModel term)
+        {
+            var manager = new LoanManager();
+            Assert.Throws<LoanInfoModelNotFoundException>(() => manager.CalculateLoanStatistics(term));
         }
     }
 }

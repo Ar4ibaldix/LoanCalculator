@@ -42,8 +42,13 @@
     <Compile Include="Exceptions\InvalidAmountException.cs" />
     <Compile Include="Exceptions\InvalidDownPaymentException.cs" />
     <Compile Include="Exceptions\InvalidInterestException.cs" />
+    <Compile Include="Exceptions\InvalidMonthlyPaymentException.cs" />
     <Compile Include="Exceptions\InvalidTermException.cs" />
+    <Compile Include="Exceptions\InvalidTotalInterestException.cs" />
+    <Compile Include="Exceptions\InvalidTotalPaymentException.cs" />
+    <Compile Include="Exceptions\LoanInfoModelNotFoundException.cs" />
     <Compile Include="Managers\ILoanManager.cs" />
+    <Compile Include="Models\ILoanCalculationModel.cs" />
     <Compile Include="Models\ILoanInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

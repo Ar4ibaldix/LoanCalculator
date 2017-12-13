@@ -160,7 +160,7 @@ namespace LoanPaymentCalculator.Helpers
             return result;
         }
 
-        public static void WriteLoanInfo(ILoanInfoModel infoModel)    // Write json to console
+        public static void WriteLoanInfo(ILoanCalculationModel infoModel)    // Write json to console
         {
             JObject jObject;
             if (infoModel != null)

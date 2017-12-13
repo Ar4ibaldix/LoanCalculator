@@ -17,16 +17,20 @@ namespace LoanPaymentCalculator
         static void Main(string[] args)
         {
             var isContinue = true;
-            while (isContinue)
+            while (isContinue) //Loop while user not enter 'Exit'
             {
-                ILoanInfoModel loanInfo = null;
+                ILoanCalculationModel loanInfo = null;
                 var loanmanager = new LoanManager();
-                var loaModel = InputHelper.FillLoanFields();
+                var loaModel = InputHelper.FillLoanFields(); // Filling viewModel from console
                 try
                 {
-                    loanInfo = loanmanager.CreateLoan(loaModel.Amount, loaModel.Interest, loaModel.Downpayment,
-                        loaModel.Term);
+                    var loanModel = loanmanager.CreateLoan(loaModel.Amount, loaModel.Interest, loaModel.Downpayment,
+                        loaModel.Term);  //Get BL Loan model
+                    loanInfo = loanmanager.CalculateLoanStatistics(loanModel); //Calculating loan info 
+
                 }
+
+                //Catching  Bl exceptions and writin to log
                 catch (InvalidAmountException)
                 {
                     log.Error(Errors.InvalidAmount);
@@ -43,11 +47,29 @@ namespace LoanPaymentCalculator
                 {
                     log.Error(Errors.InvalidTerm);
                 }
-
-                InputHelper.WriteLoanInfo(loanInfo);
+                catch (LoanInfoModelNotFoundException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(Errors.LoanInfoModelNotFound);
+                    Console.ResetColor();
+                    log.Error(Errors.LoanInfoModelNotFound);
+                }
+                catch (InvalidTotalInterestException)
+                {
+                    log.Error(Errors.InvalidTotalInterest);
+                }
+                catch (InvalidMonthlyPaymentException)
+                {
+                    log.Error(Errors.InvalidMonthlyPayment);
+                }
+                catch (InvalidTotalPaymentException)
+                {
+                    log.Error(Errors.InvalidTotalPayment);
+                }
+                InputHelper.WriteLoanInfo(loanInfo); // Writing to the display
                 Console.WriteLine(Errors.ExitMessage);
                 var exit = Console.ReadLine();
-                if (!string.IsNullOrEmpty(exit))
+                if (!string.IsNullOrEmpty(exit)) // Trying to exit 
                 {
                     isContinue = exit.ToLower() != "e";
                 }

@@ -33,30 +33,17 @@ namespace BusinessLayerCore.Models
             private set { SetTerm(value); }
         }
 
-
-        public double MonthlyPayment { get; private set; }
-        public double TotalInterest { get; private set; }
-        public double TotalPayment { get; private set; }
-
         public LoanInfoModel(int amount, decimal interest, int downpayment, int term)
         {
             Amount = amount;
             Interest = interest;
             Downpayment = downpayment;
             Term = term;
-
-            CalculateLoanInfo();
-        }
-
-        private void CalculateLoanInfo()
-        {
-            MonthlyPayment = ((Amount - Downpayment) * ((double)Interest /100)/12)/(1-(1/(Math.Pow((1 + ((double)Interest / 100) / 12), Term * 12))));
-            TotalPayment = (Term * 12 * MonthlyPayment);
-            TotalInterest = TotalPayment - (Amount - Downpayment);
         }
 
         #region [ Set values ]
 
+        //BL validation of parameters
         private void SetAmount(int value)
         {
             if (value <= 0)
