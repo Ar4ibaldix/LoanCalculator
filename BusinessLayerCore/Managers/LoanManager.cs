@@ -8,13 +8,6 @@ namespace BusinessLayerCore.Managers
 {
     public sealed class LoanManager : ILoanManager
     {
-        public ILoanInfoModel CreateLoan(int amount, decimal interest, int downpayment, int term)
-        {
-            //Creating Loan Bl model (validation inside)
-            var result = new LoanInfoModel(amount, interest, downpayment, term);
-            return result;
-        }
-
         public ILoanCalculationModel CalculateLoanStatistics(ILoanInfoModel loanInfoModel)
         {
             var result = new LoanCalculationModel();

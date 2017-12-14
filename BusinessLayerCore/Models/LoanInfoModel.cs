@@ -1,10 +1,9 @@
-﻿using System;
-using BusinessLayerInterfaces.Exceptions;
+﻿using BusinessLayerInterfaces.Exceptions;
 using BusinessLayerInterfaces.Models;
 
 namespace BusinessLayerCore.Models
 {
-    internal sealed class LoanInfoModel: ILoanInfoModel
+    public sealed class LoanInfoModel: ILoanInfoModel
     {
         private int _amount;
         private decimal _interest;

@@ -10,8 +10,7 @@ namespace LoanPaymentCalculator.Helpers
 {
     internal static class InputHelper
     {
-        private static readonly ILog log =
-            LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static LoanModel FillLoanFields()
         {
@@ -35,7 +34,7 @@ namespace LoanPaymentCalculator.Helpers
                 while (amount <= 0)
                 {
                     var errorMessage = amount <= 0 ? Errors.MustBepositiveOrGreaterZero : Errors.NotValidInteger;
-                    log.Error(errorMessage);
+                    Log.Error(errorMessage);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(errorMessage);
                     Console.ResetColor();
@@ -49,7 +48,7 @@ namespace LoanPaymentCalculator.Helpers
             try
             {
                 var interestString = Console.ReadLine();                                                                    // Reading From console
-                var trimmed = interestString.Trim('%').Replace(",",".");                                                                     // Trimming '%' symbols
+                var trimmed = interestString.Trim('%').Replace(",", ".");                                                   // Trimming '%' symbols
                 if (!decimal.TryParse(trimmed, out interest))
                 {
                     throw new Exception(Errors.NotValidInteger);
@@ -62,7 +61,7 @@ namespace LoanPaymentCalculator.Helpers
             catch (Exception e)
             {
                 var notValidString = !string.IsNullOrEmpty(e.Message);                                                      // flag for error mesages
-                while (interest <= 0 || interest > 100) 
+                while (interest <= 0 || interest > 100)
                 {
                     string errorMessage;
                     if (interest <= 0)
@@ -77,7 +76,7 @@ namespace LoanPaymentCalculator.Helpers
                     {
                         errorMessage = Errors.NotValidInteger;
                     }
-                    log.Error(errorMessage);
+                    Log.Error(errorMessage);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(errorMessage);
                     Console.ResetColor();
@@ -96,7 +95,7 @@ namespace LoanPaymentCalculator.Helpers
                 {
                     throw new Exception(Errors.NotValidInteger);
                 };
-                if (downpayment < 0 )
+                if (downpayment < 0)
                 {
                     throw new Exception("");
                 }
@@ -105,7 +104,7 @@ namespace LoanPaymentCalculator.Helpers
                     throw new Exception("");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 var notValidString = !string.IsNullOrEmpty(e.Message);
                 while (downpayment < 0 || downpayment >= amount || notValidString)
@@ -123,7 +122,7 @@ namespace LoanPaymentCalculator.Helpers
                     {
                         errorMessage = Errors.NotValidInteger;
                     }
-                    log.Error(errorMessage);
+                    Log.Error(errorMessage);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(errorMessage);
                     Console.ResetColor();
@@ -146,7 +145,7 @@ namespace LoanPaymentCalculator.Helpers
                 while (term <= 0)
                 {
                     var errorMessage = amount <= 0 ? Errors.MustBepositiveOrGreaterZero : Errors.NotValidInteger;
-                    log.Error(errorMessage);
+                    Log.Error(errorMessage);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(errorMessage);
                     Console.ResetColor();
@@ -160,7 +159,7 @@ namespace LoanPaymentCalculator.Helpers
             return result;
         }
 
-        public static void WriteLoanInfo(ILoanCalculationModel infoModel)    // Write json to console
+        public static void WriteLoanInfo(ILoanCalculationModel infoModel)                                                           // Write json to console
         {
             JObject jObject;
             if (infoModel != null)

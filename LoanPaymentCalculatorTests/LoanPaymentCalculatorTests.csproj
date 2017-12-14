@@ -60,6 +60,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Managers\LoanManagerTests.cs" />
+    <Compile Include="Models\LoanInfoModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
