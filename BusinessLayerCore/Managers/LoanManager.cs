@@ -11,9 +11,26 @@ namespace BusinessLayerCore.Managers
         public ILoanCalculationModel CalculateLoanStatistics(ILoanInfoModel loanInfoModel)
         {
             var result = new LoanCalculationModel();
+            //Validate icoming data
             if (loanInfoModel == null)
             {
                 throw new LoanInfoModelNotFoundException();
+            }
+            if (loanInfoModel.Amount <= 0)
+            {
+                throw new InvalidAmountException();
+            }
+            if (loanInfoModel.Interest <= 0 || loanInfoModel.Interest > 100)
+            {
+                throw new InvalidInterestException();
+            }
+            if (loanInfoModel.Downpayment < 0 || loanInfoModel.Downpayment >= loanInfoModel.Amount)
+            {
+                throw new InvalidDownPaymentException();
+            }
+            if (loanInfoModel.Term <= 0)
+            {
+                throw new InvalidTermException();
             }
             //Calculating Loan info statistics(validation inside)
             result.MonthlyPayment = ((loanInfoModel.Amount - loanInfoModel.Downpayment) *

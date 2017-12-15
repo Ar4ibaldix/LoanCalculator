@@ -28,5 +28,45 @@ namespace LoanPaymentCalculatorTests.Managers
             manager.Verify(x => x.CalculateLoanStatistics(loanInfoModel), Times.Once);
             Assert.DoesNotThrow(() => manager.Object.CalculateLoanStatistics(loanInfoModel));
         }
+
+        [Test]
+        [TestCase(-100)]
+        public void CalculateLoanStatisticsThrowExceptionIfNotValidAmount(int amount)
+        {
+            var loanInfoModel = new LoanInfoModel(amount, 5, 5, 10);
+            var manager = new Mock<ILoanManager>();
+            manager.Setup(x => x.CalculateLoanStatistics(It.IsAny<ILoanInfoModel>())).Throws<InvalidAmountException>();
+            Assert.Throws<InvalidAmountException>(() => manager.Object.CalculateLoanStatistics(loanInfoModel));
+        }
+
+        [Test]
+        [TestCase(102)]
+        public void CalculateLoanStatisticsThrowExceptionIfNotValidInterest(int interest)
+        {
+            var loanInfoModel = new LoanInfoModel(10, interest, 5, 10);
+            var manager = new Mock<ILoanManager>();
+            manager.Setup(x => x.CalculateLoanStatistics(It.IsAny<ILoanInfoModel>())).Throws<InvalidInterestException>();
+            Assert.Throws<InvalidInterestException>(() => manager.Object.CalculateLoanStatistics(loanInfoModel));
+        }
+
+        [Test]
+        [TestCase(102)]
+        public void CalculateLoanStatisticsThrowExceptionIfNotValidDownpayment(int downpayment)
+        {
+            var loanInfoModel = new LoanInfoModel(10, 5, downpayment, 10);
+            var manager = new Mock<ILoanManager>();
+            manager.Setup(x => x.CalculateLoanStatistics(It.IsAny<ILoanInfoModel>())).Throws<InvalidDownPaymentException>();
+            Assert.Throws<InvalidDownPaymentException>(() => manager.Object.CalculateLoanStatistics(loanInfoModel));
+        }
+
+        [Test]
+        [TestCase(-100)]
+        public void CalculateLoanStatisticsThrowExceptionIfNotValidTerm(int term)
+        {
+            var loanInfoModel = new LoanInfoModel(10, 5, 5, term);
+            var manager = new Mock<ILoanManager>();
+            manager.Setup(x => x.CalculateLoanStatistics(It.IsAny<ILoanInfoModel>())).Throws<InvalidTermException>();
+            Assert.Throws<InvalidTermException>(() => manager.Object.CalculateLoanStatistics(loanInfoModel));
+        }
     }
 }

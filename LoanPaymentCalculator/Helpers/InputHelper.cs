@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
+using BusinessLayerCore.Models;
 using BusinessLayerInterfaces.Models;
 using log4net;
-using LoanPaymentCalculator.Models;
 using LoanPaymentCalculator.Resources;
 using Newtonsoft.Json.Linq;
 
@@ -12,7 +12,7 @@ namespace LoanPaymentCalculator.Helpers
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static LoanModel FillLoanFields()
+        public static ILoanInfoModel FillLoanFields()
         {
             var amount = 0;
             decimal interest = 0;
@@ -155,7 +155,7 @@ namespace LoanPaymentCalculator.Helpers
             }
 
             Console.WriteLine();
-            var result = new LoanModel(amount, interest, downpayment, term);
+            var result = new LoanInfoModel(amount, interest, downpayment, term);
             return result;
         }
 

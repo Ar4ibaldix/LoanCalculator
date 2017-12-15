@@ -21,14 +21,9 @@ namespace LoanPaymentCalculator
             {
                 ILoanCalculationModel loanInfo = null;
                 var loanmanager = new LoanManager();
-                var loanViewModel = InputHelper.FillLoanFields();               // Filling viewModel from console
+                var loanModel = InputHelper.FillLoanFields();                  // Filling viewModel from console
                 try
-                {
-                    var loanModel = new LoanInfoModel(
-                        loanViewModel.Amount,
-                        loanViewModel.Interest,
-                        loanViewModel.Downpayment,
-                        loanViewModel.Term);                                   //Get BL Loan model
+                {                                        
                     loanInfo = loanmanager.CalculateLoanStatistics(loanModel); //Calculating loan info 
 
                 }
